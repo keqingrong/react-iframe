@@ -13,7 +13,7 @@ npm install react-inline-frame
 ## Usage
 
 ```js
-import ReactIframe from 'react-inline-frame');
+import ReactIframe from 'react-inline-frame';
 ```
 
 ## License

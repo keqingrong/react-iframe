@@ -1,6 +1,6 @@
 {
   "name": "react-inline-frame",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "React iframe component",
   "main": "dist/react-iframe.js",
   "files": [
