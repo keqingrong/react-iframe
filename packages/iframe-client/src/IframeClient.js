@@ -26,7 +26,13 @@ class IframeClient {
    * @param {Object|string} message - a message
    */
   postMessage(message) {
+    if (window.parent === window) {
+      this.log('Send to the page itself');
+      this.parentOrigin = location.origin;
+    }
     if (!this.parentOrigin) {
+      // This operation may fail because of accessing a cross-origin frame.
+      window.parent.postMessage(serialize(message), window.parent.location.origin);
       return;
     }
     window.parent.postMessage(serialize(message), this.parentOrigin);
@@ -55,7 +61,10 @@ class IframeClient {
       return;
     }
 
-    that.parentOrigin = event.origin;
+    if (!that.parentOrigin) {
+      that.parentOrigin = event.origin;
+    }
+
     const deserializeData = deserialize(event.data);
 
     that.messageHandlers.forEach(handler => {
