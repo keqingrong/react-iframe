@@ -3,7 +3,7 @@ import { isInTrustyOrigins, serialize, deserialize } from 'iframe-utils';
 class IframeClient {
   constructor() {
     this.trustyOrigins = ['*'];
-    this.parentOrigin = null;
+    this.parentOrigin = window.parent === window ? location.origin : null;
     this.messageHandlers = [];
     this.debug = false;
 
@@ -26,10 +26,6 @@ class IframeClient {
    * @param {Object|string} message - a message
    */
   postMessage(message) {
-    if (window.parent === window) {
-      this.log('Send to the page itself');
-      this.parentOrigin = location.origin;
-    }
     if (!this.parentOrigin) {
       // This operation may fail because of accessing a cross-origin frame.
       window.parent.postMessage(serialize(message), window.parent.location.origin);
