@@ -32,12 +32,12 @@ class ReactIframeDemo extends React.Component {
     }
   }
 
-  onIframeLoad(event) {
-    console.log('onIframeLoad');
+  onIframeLoad() {
+    console.log('onIframeLoad'); // eslint-disable-line no-console
   }
 
-  onIframeMessage(message, event) {
-    console.log('onIframeMessage', message);
+  onIframeMessage(message) {
+    console.log('onIframeMessage', message); // eslint-disable-line no-console
     this.setState({
       messageList: this.state.messageList.concat({
         key: uuid(),
