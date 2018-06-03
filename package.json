@@ -1,41 +1,14 @@
 {
-  "name": "react-inline-frame",
-  "version": "0.0.1",
-  "description": "React iframe component",
-  "main": "dist/react-iframe.js",
-  "files": [
-    "dist"
-  ],
-  "scripts": {
-    "clean": "rm dist/*",
-    "build": "rollup -c scripts/rollup.config.js",
-    "lint": "eslint --ext .jsx,.js src/",
-    "lint-fix": "eslint --fix --ext .jsx,.js src/"
-  },
-  "keywords": [
-    "iframe",
-    "react"
-  ],
-  "author": "Qingrong Ke <keqingrong1992@gmail.com> (https://keqingrong.github.io/)",
-  "repository": "keqingrong/react-iframe",
+  "name": "react-iframe",
+  "private": true,
   "license": "MIT",
-  "peerDependencies": {
-    "prop-types": "^15.5.0",
-    "react": "^15.5.0"
+  "scripts": {
+    "clean": "lerna clean",
+    "clean:build": "lerna exec npm run clean",
+    "build": "lerna exec npm run build",
+    "uglify": "lerna exec npm run uglify"
   },
   "devDependencies": {
-    "@babel/core": "^7.0.0-beta.44",
-    "@babel/plugin-proposal-class-properties": "^7.0.0-beta.44",
-    "@babel/plugin-proposal-object-rest-spread": "^7.0.0-beta.44",
-    "@babel/plugin-syntax-class-properties": "^7.0.0-beta.44",
-    "@babel/preset-env": "^7.0.0-beta.44",
-    "@babel/preset-react": "^7.0.0-beta.44",
-    "babel-eslint": "^8.2.2",
-    "eslint": "^4.19.1",
-    "eslint-plugin-react": "^7.7.0",
-    "rollup": "^0.57.1",
-    "rollup-plugin-babel": "^v4.0.0-beta.4",
-    "rollup-plugin-commonjs": "^9.1.0",
-    "rollup-plugin-node-resolve": "^3.3.0"
+    "lerna": "^2.10.1"
   }
 }

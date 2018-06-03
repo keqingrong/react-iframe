@@ -8,7 +8,6 @@
 
 ```sh
 npm install react-inline-frame
-npm install iframe-client
 ```
 
 ## Usage
@@ -46,15 +45,6 @@ class ReactIframeDemo extends React.Component {
     );
   }
 }
-```
-
-```js
-const iframeClient = new IframeClient();
-iframeClient.trustyOrigins = ["*"];
-iframeClient.onMessage((data, event) => {
-  console.log("A message from ");
-  iframeClient.postMessage("我是一条来自 iframe 的自动回复");
-});
 ```
 
 ## License

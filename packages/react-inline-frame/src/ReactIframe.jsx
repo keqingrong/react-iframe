@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { buildOrigin, serialize, deserialize } from './utils';
+import { buildOrigin, serialize, deserialize } from 'iframe-utils';
 
 class ReactIframe extends React.PureComponent {
   /*eslint-disable no-unused-vars */
@@ -89,7 +89,7 @@ class ReactIframe extends React.PureComponent {
   /**
    * @public
    * Send a message to the iframe.
-   * @param {object|string} message - a message
+   * @param {Object|string} message - a message
    * @param {string} [targetOrigin] - target origin (scheme+host+port)
    */
   postMessage = (message, targetOrigin) => {

@@ -1,3 +1,5 @@
+import isSameOrigin from 'is-same-origin';
+
 const location = window.location;
 
 const isOlderIE = checkOlderIE();
@@ -18,7 +20,29 @@ function buildOrigin(src, href) {
 }
 
 /**
+ * Check if the URL is included in the trusty origin array.
+ * If there is an asterisk (*) in the trusty origin array, it will
+ * always return true.
+ * @param {string} url - URL string
+ * @param {string[]} trustyOrigins - trusty origin array
+ * @returns {boolean}
+ */
+function isInTrustyOrigins(url, trustyOrigins) {
+  const len = trustyOrigins.length;
+  for (let i = 0; i < len; i++) {
+    if (trustyOrigins[i] === '*') {
+      return true;
+    }
+    if (isSameOrigin(trustyOrigins[i], url)) {
+      return true;
+    }
+  }
+  return false;
+}
+
+/**
  * Check if it is IE below 10.
+ * @returns {boolean}
  */
 function checkOlderIE() {
   const ua = navigator.userAgent;
@@ -39,7 +63,8 @@ function checkOlderIE() {
  * See
  * - https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage
  * - https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Structured_clone_algorithm
- * @param {object} data
+ * @param {Object} data
+ * @returns {Object|string}
  */
 function serialize(data) {
   if (isOlderIE) {
@@ -50,7 +75,8 @@ function serialize(data) {
 
 /**
  * Deserialize the data.
- * @param {string|object} data
+ * @param {string|Object} data
+ * @returns {Object|string}
  */
 function deserialize(data) {
   if (isOlderIE) {
@@ -65,6 +91,9 @@ function deserialize(data) {
 
 export {
   buildOrigin,
+  isInTrustyOrigins,
   serialize,
   deserialize
 };
+
+
