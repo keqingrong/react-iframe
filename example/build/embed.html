@@ -39,7 +39,11 @@
     document.querySelector('#origin').textContent = location.origin;
 
     var iframeClient = new IframeClient();
-    iframeClient.trustyOrigins = ['http://localhost:3000'];
+    iframeClient.trustyOrigins = [
+      'http://localhost:3000',
+      'http://localhost:5000',
+      'https://rawgit.com'
+    ];
     iframeClient.debug = true;
     iframeClient.onMessage(function (data, event) {
       var newEl = document.createElement('li');
