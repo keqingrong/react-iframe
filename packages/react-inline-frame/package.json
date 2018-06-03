@@ -4,13 +4,15 @@
   "description": "React iframe component",
   "main": "dist/react-iframe.js",
   "jsnext:main": "src/index.js",
+  "unpkg": "dist/react-iframe.min.js",
   "files": [
-    "src",
-    "dist"
+    "dist",
+    "src"
   ],
   "scripts": {
     "clean": "rimraf dist",
     "build": "rollup -c",
+    "watch": "rollup -w -c",
     "uglify": "uglifyjs dist/react-iframe.js --comments -c -m -o dist/react-iframe.min.js",
     "prepublish": "npm-run-all clean build uglify"
   },

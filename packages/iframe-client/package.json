@@ -2,8 +2,9 @@
   "name": "iframe-client",
   "version": "0.0.4",
   "description": "An iframe client for the browser",
-  "main": "index.js",
+  "main": "dist/iframe-client.js",
   "jsnext:main": "src/index.js",
+  "unpkg": "dist/iframe-client.min.js",
   "files": [
     "src",
     "dist"
@@ -11,6 +12,7 @@
   "scripts": {
     "clean": "rimraf dist",
     "build": "rollup -c",
+    "watch": "rollup -w -c",
     "uglify": "uglifyjs dist/iframe-client.js --comments -c -m -o dist/iframe-client.min.js",
     "prepublish": "npm-run-all clean build uglify"
   },

@@ -5,13 +5,14 @@
   "main": "lib/index.js",
   "jsnext:main": "src/index.js",
   "files": [
-    "src",
+    "dist",
     "lib",
-    "dist"
+    "src"
   ],
   "scripts": {
     "clean": "rimraf dist lib",
     "build": "rollup -c",
+    "watch": "rollup -w -c",
     "uglify": "uglifyjs dist/iframe-utils.js --comments -c -m -o dist/iframe-utils.min.js",
     "prepublish": "npm-run-all clean build uglify"
   },

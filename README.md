@@ -1,8 +1,6 @@
-# react-inline-frame
+# react-frame
 
-[![npm version](https://img.shields.io/npm/v/react-inline-frame.svg)](https://www.npmjs.com/package/react-inline-frame)
-
-> React iframe component
+> React iframe component and client
 
 ## Installation
 
