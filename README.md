@@ -1,4 +1,4 @@
-# react-frame
+# react-iframe
 
 > React iframe component and client
 
