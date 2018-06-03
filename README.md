@@ -2,6 +2,13 @@
 
 > React iframe component and client
 
+## Packages
+
+| Package | Version |
+|---------|---------|
+| [`react-inline-frame`](/packages/react-inline-frame) | [![npm](https://img.shields.io/npm/v/react-inline-frame.svg)](https://www.npmjs.com/package/react-inline-frame) |
+| [`iframe-client`](/packages/iframe-client) | [![npm](https://img.shields.io/npm/v/iframe-client.svg)](https://www.npmjs.com/package/iframe-client) |
+
 ## Installation
 
 ```sh
