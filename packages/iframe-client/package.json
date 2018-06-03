@@ -1,6 +1,6 @@
 {
   "name": "iframe-client",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "An iframe client for the browser",
   "main": "dist/iframe-client.js",
   "jsnext:main": "src/index.js",
@@ -24,7 +24,7 @@
   "repository": "keqingrong/react-iframe",
   "license": "MIT",
   "dependencies": {
-    "iframe-utils": "^0.0.5"
+    "iframe-utils": "^0.0.6"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0-beta.49",
