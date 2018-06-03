@@ -14,16 +14,16 @@ npm install iframe-client
 ## Usage
 
 ```js
-import React from "react";
-import ReactIframe from "react-inline-frame";
+import React from 'react';
+import ReactIframe from 'react-inline-frame';
 
 class ReactIframeDemo extends React.Component {
   onIframeLoad = event => {
     console.log("onIframeLoad");
 
     this.iframe.postMessage({
-      type: "greeting",
-      content: ["Hello", "Bonjour", "你好"]
+      type: 'greeting',
+      content: ['Hello', 'Bonjour', '你好']
     });
   };
 
@@ -50,10 +50,11 @@ class ReactIframeDemo extends React.Component {
 
 ```js
 const iframeClient = new IframeClient();
-iframeClient.trustyOrigins = ["*"];
+iframeClient.trustyOrigins = ['*'];
 iframeClient.onMessage((data, event) => {
-  console.log("A message from ");
-  iframeClient.postMessage("我是一条来自 iframe 的自动回复");
+  console.log('Get a message from the parent window', data);
+
+  iframeClient.postMessage('A auto-response from the embed page');
 });
 ```
 

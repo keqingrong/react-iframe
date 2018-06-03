@@ -5,10 +5,13 @@
   "scripts": {
     "clean": "lerna clean",
     "clean:build": "lerna exec npm run clean",
+    "bootstrap": "lerna bootstrap",
+    "format": "prettier --write '**/*.js'",
     "build": "lerna exec npm run build",
     "uglify": "lerna exec npm run uglify"
   },
   "devDependencies": {
-    "lerna": "^2.10.1"
+    "lerna": "^2.10.1",
+    "prettier": "^1.13.4"
   }
 }

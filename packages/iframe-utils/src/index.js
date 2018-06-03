@@ -89,11 +89,4 @@ function deserialize(data) {
   return data;
 }
 
-export {
-  buildOrigin,
-  isInTrustyOrigins,
-  serialize,
-  deserialize
-};
-
-
+export { buildOrigin, isInTrustyOrigins, serialize, deserialize };
