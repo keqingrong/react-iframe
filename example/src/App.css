@@ -1,0 +1,21 @@
+.box-container {
+  padding: 16px;
+}
+
+.box {
+  box-sizing: border-box;
+  margin-right: 8px;
+  float: left;
+  width: 500px;
+  height: 600px;
+  border: solid 4px #f60;
+}
+
+.page {
+  padding: 8px;
+}
+
+.page-origin-title,
+.page-type-title {
+  font-size: 16px;
+}

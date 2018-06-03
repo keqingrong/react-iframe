@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    body {
+      margin: 0;
+    }
+
+    .page {
+      padding: 16px;
+    }
+
+    .page-origin-title,
+    .page-type-title {
+      font-size: 16px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+    <h1 class="page-origin-title">origin:
+      <code id="origin"></code>
+    </h1>
+    <h2 class="page-type-title">embed page</h2>
+    <ul id="result"></ul>
+    <div>
+      <input type="text" id="input-msg">
+      <button type="button" id="btn-submit">Send</button>
+    </div>
+  </div>
+  <script src="//unpkg.com/iframe-client/dist/iframe-client.min.js"></script>
+  <script>
+    document.querySelector('#origin').textContent = location.origin;
+
+    var iframeClient = new IframeClient();
+    iframeClient.trustyOrigins = ['http://localhost:3000'];
+    iframeClient.debug = true;
+    iframeClient.onMessage(function (data, event) {
+      var newEl = document.createElement('li');
+      newEl.textContent = 'parent: ' + data;
+      document.querySelector('#result').appendChild(newEl);
+
+      iframeClient.postMessage('A auto-response from the embed page');
+    });
+
+    var inputEl = document.querySelector('#input-msg');
+    document.querySelector('#btn-submit').addEventListener('click', function (event) {
+      iframeClient.postMessage(inputEl.value);
+    }, false);
+  </script>
+</body>
+
+</html>
