@@ -40,9 +40,8 @@ class IframeClient {
    * @param {MessageEvent} event
    */
   onWindowMessage(event) {
-    const that = this;
     if (!isInTrustyOrigins(event.origin, this.trustyOrigins)) {
-      that.log('Receive a message from an untrusted origin', {
+      this.log('Receive a message from an untrusted origin', {
         origin: event.origin,
         data: event.data,
       });
@@ -50,20 +49,20 @@ class IframeClient {
     }
 
     if (event.source !== window.parent) {
-      that.log('Receive a message from non-parent window, including itself', {
+      this.log('Receive a message from non-parent window, including itself', {
         origin: event.origin,
         data: event.data,
       });
       return;
     }
 
-    if (!that.parentOrigin) {
-      that.parentOrigin = event.origin;
+    if (!this.parentOrigin) {
+      this.parentOrigin = event.origin;
     }
 
     const deserializeData = deserialize(event.data);
 
-    that.messageHandlers.forEach(handler => {
+    this.messageHandlers.forEach(handler => {
       handler(deserializeData, event);
     });
   }
