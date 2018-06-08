@@ -31,11 +31,11 @@ class ReactIframe extends React.PureComponent {
   }
 
   componentDidMount() {
-    window.addEventListener('message', this.messageHandler, false);
+    window.addEventListener('message', this.handleMessage, false);
   }
 
   componentWillUnmount() {
-    window.removeEventListener('message', this.messageHandler, false);
+    window.removeEventListener('message', this.handleMessage, false);
   }
 
   /**
@@ -53,7 +53,7 @@ class ReactIframe extends React.PureComponent {
    * Handle the message from the iframe.
    * @param {Event} event
    */
-  messageHandler = (event) => {
+  handleMessage = (event) => {
     const targetOrigin = buildOrigin(this.props.src);
     if (!targetOrigin || targetOrigin !== event.origin) {
       this.log('A message from other origins.', event.data);
