@@ -12,7 +12,7 @@ class ReactIframeDemo extends React.Component {
     super(props);
     this.state = {
       message: '',
-      messageList: []
+      messageList: [],
     };
     this.onChange = this.onChange.bind(this);
     this.onClick = this.onClick.bind(this);
@@ -22,7 +22,7 @@ class ReactIframeDemo extends React.Component {
 
   onChange(event) {
     this.setState({
-      message: event.target.value
+      message: event.target.value,
     });
   }
 
@@ -41,8 +41,8 @@ class ReactIframeDemo extends React.Component {
     this.setState({
       messageList: this.state.messageList.concat({
         key: uuid(),
-        value: message
-      })
+        value: message,
+      }),
     });
   }
 
@@ -57,7 +57,7 @@ class ReactIframeDemo extends React.Component {
             // src="//127.0.0.1:8080/embed.html"
             style={{
               width: '100%',
-              height: '100%'
+              height: '100%',
             }}
             ref={el => {
               this.iframe = el;
@@ -68,7 +68,8 @@ class ReactIframeDemo extends React.Component {
           />
         </div>
         <div className="box page">
-          <h1 className="page-origin-title">origin:
+          <h1 className="page-origin-title">
+            origin:
             <code> {window.location.origin}</code>
           </h1>
           <h2 className="page-type-title">current page</h2>
