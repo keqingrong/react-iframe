@@ -68,6 +68,26 @@ class ReactIframe extends React.PureComponent {
 
   /**
    * @private
+   * Send a message to the iframe
+   * @param {Object} message - a message
+   */
+  sendMessage = (message) => {
+    const { header } = message;
+    const serializedMessage = serialize(message);
+    const safeTargetOrigin = header.targetOrigin || buildOrigin(this.props.src);
+    if (safeTargetOrigin) {
+      if (!this.loaded) {
+        /*eslint-disable no-console */
+        console.warn('Please try to send the message after the iframe is loaded.');
+        /*eslint-enable no-console */
+        return;
+      }
+      this.iframe.contentWindow.postMessage(serializedMessage, safeTargetOrigin);
+    }
+  }
+
+  /**
+   * @private
    * The iframe has loaded or failed to load.
    * @param {Event} event
    */
@@ -93,17 +113,13 @@ class ReactIframe extends React.PureComponent {
    * @param {string} [targetOrigin] - target origin (scheme+host+port)
    */
   postMessage = (message, targetOrigin) => {
-    const serializedMessage = serialize(message);
-    const safeTargetOrigin = targetOrigin || buildOrigin(this.props.src);
-    if (safeTargetOrigin) {
-      if (!this.loaded) {
-        /*eslint-disable no-console */
-        console.warn('Please try to send the message after the iframe is loaded.');
-        /*eslint-enable no-console */
-        return;
-      }
-      this.iframe.contentWindow.postMessage(serializedMessage, safeTargetOrigin);
-    }
+    this.sendMessage({
+      header: {
+        isTrusted: true,
+        targetOrigin: targetOrigin,
+      },
+      body: message
+    });
   }
 
   render() {

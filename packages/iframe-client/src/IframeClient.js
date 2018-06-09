@@ -5,6 +5,7 @@ class IframeClient {
     this.trustyOrigins = ['*'];
     this.parentOrigin = window.parent === window ? location.origin : null;
     this.messageHandlers = [];
+    this.loose = true;
     this.debug = false;
 
     this.onWindowMessage = this.onWindowMessage.bind(this);
@@ -28,7 +29,10 @@ class IframeClient {
   postMessage(message) {
     if (!this.parentOrigin) {
       // This operation may fail because of accessing a cross-origin frame.
-      window.parent.postMessage(serialize(message), window.parent.location.origin);
+      window.parent.postMessage(
+        serialize(message),
+        window.parent.location.origin
+      );
       return;
     }
     window.parent.postMessage(serialize(message), this.parentOrigin);
@@ -62,9 +66,33 @@ class IframeClient {
 
     const deserializeData = deserialize(event.data);
 
-    this.messageHandlers.forEach(handler => {
-      handler(deserializeData, event);
-    });
+    // Common API
+    if (this.loose) {
+      this.messageHandlers.forEach(handleMessage => {
+        handleMessage(deserializeData, event);
+      });
+      return;
+    }
+
+    // New API for ReactIframe component
+    const { header, body } = deserializeData;
+
+    if (!header || header.isTrusted === undefined) {
+      throw new Error(
+        'Opps! Something went wrong, try setting `loose` property to `true`.'
+      );
+    }
+
+    // The `header.isTrusted` is a boolean. It is true when the message was sent
+    // by a user action, and false when the message was sent automatically by
+    // ReactIframe component.
+    if (header.isTrusted) {
+      this.messageHandlers.forEach(handleMessage => {
+        handleMessage(body, event);
+      });
+    } else {
+      // TODO: process the message sent automatically by ReactIframe
+    }
   }
 
   /**
