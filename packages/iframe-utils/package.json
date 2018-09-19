@@ -3,7 +3,9 @@
   "version": "0.0.6",
   "description": "Utilities for iframe to use",
   "main": "lib/index.js",
-  "jsnext:main": "src/index.js",
+  "module": "dist/iframe-utils.esm.js",
+  "jsnext:main": "dist/iframe-utils.esm.js",
+  "unpkg": "dist/react-iframe.min.js",
   "files": [
     "dist",
     "lib",

@@ -3,7 +3,8 @@
   "version": "0.0.6",
   "description": "React iframe component",
   "main": "dist/react-iframe.js",
-  "jsnext:main": "src/index.js",
+  "module": "dist/react-iframe.esm.js",
+  "jsnext:main": "dist/react-iframe.esm.js",
   "unpkg": "dist/react-iframe.min.js",
   "files": [
     "dist",

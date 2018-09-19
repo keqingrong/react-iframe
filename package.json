@@ -3,6 +3,7 @@
   "private": true,
   "license": "MIT",
   "scripts": {
+    "postinstall": "lerna bootstrap",
     "clean": "lerna clean",
     "clean:build": "lerna exec npm run clean",
     "bootstrap": "lerna bootstrap",

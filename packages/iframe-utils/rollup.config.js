@@ -12,9 +12,32 @@ const configs = [
   {
     input: 'src/index.js',
     output: {
+      file: 'dist/iframe-utils.esm.js',
+      format: 'es',
+      sourcemap: true,
+      banner: banner,
+    },
+    external: ['is-same-origin'],
+    plugins: [
+      nodeResolve({
+        module: true,
+        jsnext: true,
+        main: true,
+        extensions: ['.js', '.json'],
+      }),
+      commonjs(),
+      babel({
+        exclude: 'node_modules/**',
+      }),
+    ],
+  },
+  {
+    input: 'src/index.js',
+    output: {
       file: 'dist/iframe-utils.js',
       name: globalName,
       format: 'umd',
+      sourcemap: true,
       banner: banner,
     },
     plugins: [
@@ -35,8 +58,9 @@ const configs = [
     output: {
       file: 'lib/index.js',
       format: 'cjs',
+      sourcemap: true,
       banner: banner,
-      intro: "const { URL } = require('url');",
+      intro: "var { URL } = require('url');",
     },
     external: ['url', 'is-same-origin'],
     plugins: [

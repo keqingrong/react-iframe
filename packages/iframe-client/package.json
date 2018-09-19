@@ -3,7 +3,8 @@
   "version": "0.0.6",
   "description": "An iframe client for the browser",
   "main": "dist/iframe-client.js",
-  "jsnext:main": "src/index.js",
+  "module": "dist/iframe-client.esm.js",
+  "jsnext:main": "dist/iframe-client.esm.js",
   "unpkg": "dist/iframe-client.min.js",
   "files": [
     "src",

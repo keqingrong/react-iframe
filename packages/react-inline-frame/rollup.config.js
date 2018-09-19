@@ -11,17 +11,27 @@ const globalName = 'ReactIframe';
 const configs = [
   {
     input: 'src/index.js',
-    output: {
-      file: 'dist/react-iframe.js',
-      name: globalName,
-      format: 'umd',
-      banner: banner,
-      globals: {
-        react: 'React',
-        'prop-types': 'PropTypes',
+    output: [
+      {
+        file: 'dist/react-iframe.esm.js',
+        format: 'es',
+        sourcemap: true,
+        banner: banner,
       },
-    },
-    external: ['react', 'prop-types'],
+      {
+        file: 'dist/react-iframe.js',
+        name: globalName,
+        format: 'umd',
+        sourcemap: true,
+        banner: banner,
+        globals: {
+          'iframe-utils': 'IframeUtils',
+          react: 'React',
+          'prop-types': 'PropTypes',
+        },
+      },
+    ],
+    external: ['react', 'prop-types', 'iframe-utils'],
     plugins: [
       nodeResolve({
         jsnext: true,

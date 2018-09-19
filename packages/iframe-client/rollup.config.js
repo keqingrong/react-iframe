@@ -12,10 +12,32 @@ const configs = [
   {
     input: 'src/index.js',
     output: {
+      file: 'dist/iframe-client.esm.js',
+      format: 'es',
+      sourcemap: true,
+      banner: banner,
+    },
+    external: ['iframe-utils'],
+    plugins: [
+      nodeResolve({
+        module: true,
+        jsnext: true,
+        main: true,
+        extensions: ['.js', '.json'],
+      }),
+      commonjs(),
+      babel({
+        exclude: 'node_modules/**',
+      }),
+    ],
+  },
+  {
+    input: 'src/index.js',
+    output: {
       file: 'dist/iframe-client.js',
       name: globalName,
       format: 'umd',
-      banner: banner,
+      banner: banner
     },
     plugins: [
       nodeResolve({
