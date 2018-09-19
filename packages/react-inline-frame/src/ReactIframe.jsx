@@ -5,6 +5,7 @@ import { buildOrigin, serialize, deserialize } from 'iframe-utils';
 class ReactIframe extends React.PureComponent {
   /*eslint-disable no-unused-vars */
   static defaultProps = {
+    frameBorder: 0,
     className: '',
     debug: false,
     src: '',
@@ -123,7 +124,7 @@ class ReactIframe extends React.PureComponent {
   }
 
   render() {
-    const { className, src, style, title, ...others } = this.props;
+    const { className, src, style, title, frameBorder, ...others } = this.props;
     delete others.debug;
     delete others.onLoad;
     delete others.onMessage;
@@ -133,7 +134,7 @@ class ReactIframe extends React.PureComponent {
         className={`react-iframe ${className}`}
         src={src}
         style={style}
-        frameBorder="0"
+        frameBorder={frameBorder}
         ref={el => { this.iframe = el; }}
         onLoad={this.onLoad}
         {...others}
